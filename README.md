@@ -1,2 +1,2 @@
 # hwi
-illumos hardware info
+illumos hardware info utility, inspired by inxi 
