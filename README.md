@@ -1,0 +1,2 @@
+# hwi
+illumos hardware info
