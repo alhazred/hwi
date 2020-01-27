@@ -29,15 +29,48 @@ err_fatal(char *s) {
 
 int
 main(int argc, char **argv) {
+	int c;
 
 	(void) setlocale(LC_ALL, "");
 
-	sys_info();
-	cpu_info();
-	mem_info();
-	pci_info(VIDEO);
-	pci_info(NET);
-	drives_info();
+	if (argc == 1) {
+		sys_info();
+		cpu_info();
+		mem_info();
+		pci_info(VIDEO);
+		pci_info(NET);
+		drives_info();
 
+		return (0);
+	}
+
+	while ((c = getopt(argc, argv, ":cdmnsvV")) != -1)  {
+		switch (c)  {
+		case 'c':
+			cpu_info();
+			break;
+		case 'd':
+			drives_info();
+			break;
+
+		case 'm':
+			mem_info();
+			break;
+		case 'n':
+			pci_info(NET);
+			break;
+		case 's':
+			sys_info();
+			break;
+		case 'v':
+			pci_info(VIDEO);
+			break;
+		case 'V':
+			(void) fprintf(stderr, "hwi version %s\n", VERSION);
+			break;
+		default:
+			(void) fprintf(stderr, "Usage: hwi [ -c | -d | -m | -n | -s | -v | -V ]\n");
+		}
+	}
 	return (0);
 }

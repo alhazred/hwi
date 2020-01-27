@@ -5,6 +5,7 @@ extern "C" {
 #include <libdevinfo.h> 
 #include <pcidb.h>
 
+#define VERSION	"01/27/2020"
 #define VIDEO 1
 #define NET   2
 
